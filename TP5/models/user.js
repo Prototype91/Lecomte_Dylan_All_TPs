@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -12,10 +13,22 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasMany(models.Post);
       User.hasMany(models.Comment);
-      User.hasOne(models.Role);
+      User.hasOne(models.Role, {
+        foreignKey: {
+          name: 'id',
+          type: DataTypes.UUID,
+          allowNull: true
+        }
+      });
     }
   };
   User.init({
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     lastname: DataTypes.STRING,
     firstname: DataTypes.STRING,
     email: DataTypes.STRING,

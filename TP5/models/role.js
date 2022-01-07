@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Role.init({
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     name: DataTypes.STRING
   }, {
     sequelize,

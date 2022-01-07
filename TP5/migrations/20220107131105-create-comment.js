@@ -4,11 +4,9 @@ module.exports = {
     await queryInterface.createTable('Comments', {
       id: {
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        primaryKey: true
       },
       content: {
         type: Sequelize.TEXT

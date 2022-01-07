@@ -4,11 +4,9 @@ module.exports = {
     await queryInterface.createTable('Posts', {
       id: {
         allowNull: false,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        allowNull: false,
-        primaryKey: true
       },
       title: {
         type: Sequelize.STRING
@@ -22,10 +20,7 @@ module.exports = {
       author: {
         type: Sequelize.UUID,
         reference : {
-          model: {
-            tablesName: 'Users',
-            schema: 'schema'
-          },
+          model: 'Users',
           key: 'id'
         }
       },

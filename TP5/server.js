@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { User } = require('./models');
+const users = require('./handlers/users');
+const roles = require('./handlers/roles');
+const posts = require('./handlers/posts');
 
 const app = express();
 app.use(bodyParser.json());
@@ -9,11 +11,8 @@ app.get('/', (req, res) => {
     res.send('Hello World !');
 });
 
-app.post('/users', async (req, res) => {
-    const payload = req.body;
-    const user = await User.create(payload);
-    console.log(user);
-    res.send(user);
-});
+users(app);
+roles(app);
+posts(app);
 
 app.listen(3000);

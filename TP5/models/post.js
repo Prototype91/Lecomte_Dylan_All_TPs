@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Post.init({
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     title: DataTypes.STRING,
     content: DataTypes.TEXT,
     date: DataTypes.DATE,

@@ -13,10 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       Comment.belongsTo(models.User, {
         foreignKey: 'author'
       });
-      Comment.hasOne(models.Post);
+      Comment.belongsTo(models.Post);
     }
   };
   Comment.init({
+    id: {
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      type: DataTypes.UUID,
+    },
     content: DataTypes.TEXT,
     date: DataTypes.DATE,
     author: DataTypes.UUID
