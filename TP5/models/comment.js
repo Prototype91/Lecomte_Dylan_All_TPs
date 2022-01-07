@@ -15,7 +15,12 @@ module.exports = (sequelize, DataTypes) => {
           name: 'id'
         }
       });
-      Comment.belongsTo(models.Post);
+      Comment.belongsTo(models.Post, {
+        foreignKey: {
+          name: "id",
+        },
+        onDelete: "CASCADE"
+      });
     }
   };
   Comment.init({

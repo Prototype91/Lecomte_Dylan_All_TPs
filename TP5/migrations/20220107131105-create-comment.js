@@ -16,23 +16,20 @@ module.exports = {
       },
       userId: {
         type: Sequelize.UUID,
-        reference : {
-          model: {
-            tablesName: 'Users',
-            schema: 'schema'
-          },
+        references: {
+          model: 'Users',
           key: 'id'
-        }
+        },
+        allowNull: false,
       },
       postId: {
         type: Sequelize.UUID,
-        reference : {
-          model: {
-            tablesName: 'Users',
-            schema: 'schema'
-          },
+        references: {
+          model: 'Posts',
           key: 'id'
-        }
+        },
+        allowNull: false,
+        onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,
