@@ -14,7 +14,17 @@ module.exports = {
       date: {
         type: Sequelize.DATE
       },
-      author: {
+      userId: {
+        type: Sequelize.UUID,
+        reference : {
+          model: {
+            tablesName: 'Users',
+            schema: 'schema'
+          },
+          key: 'id'
+        }
+      },
+      postId: {
         type: Sequelize.UUID,
         reference : {
           model: {

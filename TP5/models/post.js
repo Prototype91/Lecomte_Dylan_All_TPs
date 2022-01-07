@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Post.belongsTo(models.User, {
-        foreignKey: 'author'
+        foreignKey: {
+          name: 'id'
+        }
       });
       Post.hasMany(models.Comment);
     }
@@ -26,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.TEXT,
     date: DataTypes.DATE,
-    author: DataTypes.UUID
+    userId: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'Post',

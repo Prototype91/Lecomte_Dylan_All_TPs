@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Comment.belongsTo(models.User, {
-        foreignKey: 'author'
+        foreignKey: {
+          name: 'id'
+        }
       });
       Comment.belongsTo(models.Post);
     }
@@ -25,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     content: DataTypes.TEXT,
     date: DataTypes.DATE,
-    author: DataTypes.UUID
+    userId: DataTypes.UUID,
+    postId: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'Comment',
