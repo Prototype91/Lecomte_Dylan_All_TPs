@@ -41,9 +41,9 @@ module.exports = function (app) {
             if (req?.query.showComments) {
                 const comments = await Comment.findAll({ where: { postId } });
                 res.send({ post, comments });
-            };
-
-            res.send(post);
+            } else {
+                res.send(post);
+            }; 
         } catch (error) {
             console.error(error);
         };

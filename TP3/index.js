@@ -2,8 +2,9 @@ const stringPromise = (string) => {
     return new Promise((resolve, failure) => {
         if (string.length > 20) {
             failure('Chaîne de caractère trop longue !');
+        } else {
+            resolve(true);
         };
-        resolve(true);
     });
 };
 
@@ -12,8 +13,9 @@ const intPromise = (firstInt, secondInt) => {
         if (firstInt > secondInt) {
             const diff = firstInt - secondInt;
             resolve(diff);
+        } else {
+            failure('echec');
         };
-        failure('echec');
     });
 };
 
@@ -27,9 +29,9 @@ const datePromise = (formatDate) => {
 
         if (age > 18) {
             resolve(true);
+        } else {
+            failure('Tu es mineur !');
         };
-
-        failure('Tu es mineur !');
     });
 };
 

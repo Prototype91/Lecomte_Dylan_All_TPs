@@ -48,9 +48,10 @@ module.exports = function (app) {
             if (req?.query.showPosts) {
                 const posts = await Post.findAll({ where: { userId } });
                 res.send({ user, posts });
+            } else {
+                res.send(user);
             };
 
-            res.send(user);
         } catch (error) {
             console.error(error);
         };

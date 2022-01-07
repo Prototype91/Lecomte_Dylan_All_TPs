@@ -6,8 +6,9 @@ module.exports = function (app) {
     app.get('/message', (req, res) => {
         if (req.query.message.length > 20) {
             res.status(400).json({ message: "Bad Request" });
+        } else {
+            res.send(req.query.message);
         };
-        res.send(req.query.message);
     });
 
     app.post('/infos/headers', (req, res) => {
@@ -25,8 +26,9 @@ module.exports = function (app) {
 
         if (age > 18) {
             res.status(200).json({ message: `Welcome ${payload.firstname}` });
+        } else {
+            res.status(200).json({ message: "Forbidden" });
         };
-        res.status(200).json({ message: "Forbidden" });
     });
 
     app.get('/rick-roll', (req, res) => {
