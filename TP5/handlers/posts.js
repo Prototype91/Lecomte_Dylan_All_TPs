@@ -1,4 +1,5 @@
 const { Post } = require('../models');
+const { Comment } = require('../models');
 
 module.exports = function (app) {
     app.post('/posts', async (req, res) => {
@@ -15,11 +16,7 @@ module.exports = function (app) {
         const payload = req.body;
         const postId = req.params.id;
         try {
-            const post = await Post.update(payload, {
-                where: {
-                    id: postId
-                }
-            });
+            const post = await Post.update(payload, { where: { id: postId } });
             res.send(post);
         } catch (error) {
             console.error(error);
@@ -29,12 +26,8 @@ module.exports = function (app) {
     app.delete('/posts/:id', async (req, res) => {
         const postId = req.params.id;
         try {
-            await Post.destroy({
-                where: {
-                    id: postId
-                }
-            });
-            res.send("The post has been destroyed");
+            await Post.destroy({ where: { id: postId } });
+            res.send('The post has been destroyed');
         } catch (error) {
             console.error(error);
         };
@@ -43,11 +36,13 @@ module.exports = function (app) {
     app.get('/posts/:id', async (req, res) => {
         const postId = req.params.id;
         try {
-            const post = await Post.findOne({
-                where: {
-                    id: postId
-                }
-            });
+            const post = await Post.findOne({ where: { id: postId } });
+
+            if (req?.query.showComments) {
+                const comments = await Comment.findAll({ where: { postId } });
+                res.send({ post, comments });
+            };
+
             res.send(post);
         } catch (error) {
             console.error(error);
