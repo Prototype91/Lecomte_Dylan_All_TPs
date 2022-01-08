@@ -6,6 +6,7 @@ exports.role_list = async (req, res) => {
         res.send(roles);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -16,6 +17,7 @@ exports.role_detail = async (req, res) => {
         res.send(role);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -25,7 +27,8 @@ exports.role_create = async (req, res) => {
         const role = await Role.create(payload);
         res.send(role);
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -37,6 +40,7 @@ exports.role_update = async (req, res) => {
         res.send(role);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -47,5 +51,6 @@ exports.role_delete = async (req, res) => {
         res.send("The role has been destroyed");
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };

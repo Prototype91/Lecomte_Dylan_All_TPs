@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const UserRoutes = require('./routes/user.routes');
 const RoleRoutes = require('./routes/role.routes');
 const PostRoutes = require('./routes/post.routes');
-const Commentroutes = require('./routes/comment.routes');
+const CommentRoutes = require('./routes/comment.routes');
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 UserRoutes(app);
 RoleRoutes(app);
 PostRoutes(app);
-Commentroutes(app);
+CommentRoutes(app);
 
 // Listen
 app.listen(3000);

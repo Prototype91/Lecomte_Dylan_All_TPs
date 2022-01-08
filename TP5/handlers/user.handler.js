@@ -6,6 +6,7 @@ exports.user_list = async (req, res) => {
         res.send(users);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -19,9 +20,9 @@ exports.user_detail = async (req, res) => {
         } else {
             res.send(user);
         };
-
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -31,7 +32,8 @@ exports.user_create = async (req, res) => {
         const user = await User.create(payload);
         res.send(user);
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -43,6 +45,7 @@ exports.user_update = async (req, res) => {
         res.send(user);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -53,5 +56,6 @@ exports.user_delete = async (req, res) => {
         res.send("The user has been destroyed");
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };

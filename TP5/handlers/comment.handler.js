@@ -6,6 +6,7 @@ exports.comment_list = async (req, res) => {
         res.send(comments);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -16,6 +17,7 @@ exports.comment_detail = async (req, res) => {
         res.send(comment);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -25,7 +27,8 @@ exports.comment_create = async (req, res) => {
         const comment = await Comment.create(payload);
         res.send(comment);
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -37,6 +40,7 @@ exports.comment_update = async (req, res) => {
         res.send(comment);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -47,5 +51,6 @@ exports.comment_delete = async (req, res) => {
         res.send("The comment has been destroyed");
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };

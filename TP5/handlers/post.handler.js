@@ -6,6 +6,7 @@ exports.post_list = async (req, res) => {
         res.send(posts);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -21,6 +22,7 @@ exports.post_detail = async (req, res) => {
         };
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -30,7 +32,8 @@ exports.post_create = async (req, res) => {
         const post = await Post.create(payload);
         res.send(post);
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -42,6 +45,7 @@ exports.post_update = async (req, res) => {
         res.send(post);
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
 
@@ -52,5 +56,6 @@ exports.post_delete = async (req, res) => {
         res.send('The post has been destroyed');
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Une erreur est survenue" });
     };
 };
