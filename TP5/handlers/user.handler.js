@@ -14,9 +14,19 @@ exports.user_detail = async (req, res) => {
     const id = req.params.id;
     try {
         const user = await User.findOne({ where: { id } });
-        if (req?.query.showPosts) {
+        if (req?.query.showPosts === true) {
             const posts = await Post.findAll({ where: { userId: id } });
-            res.send({ user, posts });
+            res.send({
+                id: user.id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                email: user.email,
+                link: user.link,
+                username: user.username,
+                createdAt: user.createdAt,
+                updatedAt: user.updatedAt,
+                posts
+            });
         } else {
             res.send(user);
         };

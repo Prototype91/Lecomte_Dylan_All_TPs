@@ -14,9 +14,18 @@ exports.post_detail = async (req, res) => {
     const id = req.params.id;
     try {
         const post = await Post.findOne({ where: { id } });
-        if (req?.query.showComments) {
+        if (req?.query.showComments === true) {
             const comments = await Comment.findAll({ where: { postId: id } });
-            res.send({ post, comments });
+            res.send({
+                id: post.id,
+                title: post.title,
+                content: post.content,
+                date: post.date,
+                userId: post.userId,
+                createdAt: post.createdAt,
+                updatedAt: post.updatedAt,
+                comments
+            });
         } else {
             res.send(post);
         };
