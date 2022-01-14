@@ -5,8 +5,7 @@ exports.dateMiddleware = (req, res, next) => {
 };
 
 exports.ecvHeaderMiddleware = (req, res, next) => {
-    req.headers["Application-name"] = "ecv-digital";
-    console.log(req.headers);
+    res.set({'Application-name': 'ecv-digital'});
     next();
 };
 
